@@ -4,7 +4,7 @@
       <el-header class="header">
         <nav-bar/>
       </el-header>
-      <el-main>
+      <el-main class="main">
         <router-view/>
       </el-main>
     </el-container>
@@ -27,10 +27,21 @@ export default {
 <style>
 body {
   margin: 0;
+  border: 0;
   padding: 0;
 }
 
 .header {
-  background-color: #1b2126;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  height: 60px;
+}
+
+.main {
+  margin:0;
+  border: 0;
+  padding: 0;
+  width: 100%;
 }
 </style>

@@ -58,14 +58,12 @@ export default defineComponent(
     });
 </script>
 <style>
-.app {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
 .el-menu-demo {
+  height: 60px;
+  width: 100%;
   border: none;
+  margin: 0;
+  padding: 0;
   background-color: #1b2126;
   font-size: 16px;
 }
@@ -73,6 +71,7 @@ export default defineComponent(
 .avatar-wrapper {
   display: flex;
   align-items: center;
-  margin-right: 20px;
+  margin-right: 30px;
+  margin-left: 30px;
 }
 </style>

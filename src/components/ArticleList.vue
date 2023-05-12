@@ -1,6 +1,5 @@
 <template>
-  <h2>文章列表</h2>
-  <div>
+  <div class="article-list-container">
     <el-row :gutter="12">
       <el-col :span="6" v-for="article in articles" :key="article.id">
         <el-card shadow="hover" :body-style="{ padding: '20px'}" >
@@ -41,3 +40,13 @@ export default {
   },
 };
 </script>
+
+<style>
+.article-list-container{
+  margin: 0;
+  padding: 30px;
+}
+.el-col{
+  padding: 10px;
+}
+</style>
