@@ -1,7 +1,7 @@
 <template>
   <div class="common-layout">
     <el-container>
-      <el-aside width="300px">
+      <el-aside width="400px" style="overflow:visible">
         <catalog v-if="isContentLoaded" container=".article-content"></catalog>
       </el-aside>
       <el-main>

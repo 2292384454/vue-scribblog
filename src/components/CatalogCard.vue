@@ -1,16 +1,18 @@
 <template>
-  <div class="catalog-card" v-if="Object.keys(titles).length > 0">
+  <div class="catalog-card" id="catalog-card" v-if="Object.keys(titles).length > 0">
     <div class="catalog-card-header">
       <div>
-                <span><el-icon
-                    :icon="['fas', 'bars-staggered']"
-                    class="catalog-icon"
-                /></span>
-        <span>目录</span>
+        <span><font-awesome-icon
+            :icon="['fas', 'bars']"
+            class="catalog-icon"
+        /></span>
+        <span style="font-size: 20px;color: #0c82e9">目录 </span>
       </div>
       <span class="progress">{{ progress }}</span>
     </div>
-
+    <div class="read_pro">
+      <div class="read_pro_inner" id="read_pro_inner"></div>
+    </div>
     <div class="catalog-content">
       <div
           v-for="title in titles"
@@ -20,7 +22,7 @@
                     'catalog-item',
                     currentTitle.id == title.id ? 'active' : 'not-active',
                 ]"
-          :style="{ marginLeft: title.level * 20 + 'px' }"
+          :style="{ marginLeft: title.level * 20 + 'px' ,lineHeight:1.6}"
           v-show="title.isVisible"
           :title="title.rawName"
       >
@@ -32,13 +34,15 @@
 
 <script>
 import {reactive, ref} from "vue";
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 export default {
   name: "Catalog",
+  components: {FontAwesomeIcon},
   setup(props) {
     let titles = reactive(getTitles());
     let currentTitle = reactive({});
-    let progress = ref(0);
+    let progress = ref("0%");
 
     // 获取目录的标题
     function getTitles() {
@@ -111,9 +115,10 @@ export default {
         serialNumbers[level] += 1;
         // let serialNumber = serialNumbers.slice(0, level + 1).join(".");
 
-        node.isVisible = node.parent == null;
+        // node.isVisible = node.parent == null;
+        node.isVisible = true;
         // node.name = serialNumber + ". " + element.innerText;
-        node.name =  element.innerText;
+        node.name = element.innerText;
         titles.push(node);
       }
 
@@ -122,22 +127,30 @@ export default {
 
     // 监听滚动事件并更新样式
     window.addEventListener("scroll", function () {
+      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop; // 已经读过被卷起来的文档部分
+      var scrollHeight = document.documentElement.scrollHeight // 文档总高度
+      var clientHeight = document.documentElement.clientHeight // 窗口可视高度
+      document.getElementById('read_pro_inner').style.width = +(scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100 + '%'
+
       progress.value =
           parseInt(
-              (window.scrollY / document.documentElement.scrollHeight) *
+              (scrollTop / (scrollHeight - clientHeight)) *
               100
           ) + "%";
 
-      let visibleTitles = [];
+
+      // kevinhwang: 自动折叠非当前一级目录，不方便阅读，不再开启
+      // let visibleTitles = [];
+
 
       for (let i = titles.length - 1; i >= 0; i--) {
         const title = titles[i];
-        if (title.scrollTop <= window.scrollY) {
+        if (title.scrollTop <= window.scrollY + 30) {
           if (currentTitle.id === title.id) return;
 
           Object.assign(currentTitle, title);
 
-          // 展开节点
+          /*// 展开节点
           setChildrenVisible(title, true);
           visibleTitles.push(title);
 
@@ -154,19 +167,30 @@ export default {
             if (!visibleTitles.includes(t)) {
               setChildrenVisible(t, false);
             }
-          }
+          }*/
 
           return;
         }
       }
+      const stickyElement = document.getElementById('catalog-card');
+      const stickyElementTop = stickyElement.offsetTop;
+      const minTopDistance = 10;
+      const scrollTop2 = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop2 >= stickyElementTop - minTopDistance) {
+        stickyElement.style.position = 'fixed';
+        stickyElement.style.top = `${minTopDistance}px`;
+      } else {
+        stickyElement.style.position = 'static';
+      }
     });
 
     // 设置子节点的可见性
-    function setChildrenVisible(title, isVisible) {
-      for (const child of title.children) {
-        child.isVisible = isVisible;
-      }
-    }
+    /*    function setChildrenVisible(title, isVisible) {
+          for (const child of title.children) {
+            child.isVisible = isVisible;
+          }
+        }*/
 
     // 滚动到指定的位置
     function scrollToView(scrollTop) {
@@ -190,10 +214,11 @@ export default {
   border-radius: 8px;
   box-shadow: var(--card-box-shadow);
   padding: 20px 24px;
-  margin-top: 25px;
+  margin-top: 10px;
   box-sizing: border-box;
-  width: 300px;
-  position: fixed;
+  width: 400px;
+  top: 10px;
+  z-index: 1000; /* 根据需要调整 z-index 值 */
 }
 
 .catalog-card-header {
@@ -218,11 +243,11 @@ export default {
 .progress {
   color: #a9a9a9;
   font-style: italic;
-  font-size: 140%;
+  font-size: 14%;
 }
 
 .catalog-content {
-  max-height: calc(100vh - 120px);
+  max-height: calc(100vh - 200px);
   overflow: auto;
   margin-right: -24px;
   padding-right: 20px;
@@ -234,7 +259,7 @@ export default {
   line-height: 28px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  font-size: 14px;
+  font-size: 10px;
   padding: 2px 6px;
   display: -webkit-box;
   overflow: hidden;
@@ -249,11 +274,27 @@ export default {
 
 .active {
   background-color: var(--theme-color);
-  color: black;
+  color: #0c82e9;
 
   &:hover {
     background-color: #0c82e9;
     color: white;
   }
+}
+
+.read_pro {
+  position: fixed;
+  left: 30px;
+  width: 370px;
+  height: 3px;
+  background-color: #DDD;
+}
+
+.read_pro_inner {
+  content: '';
+  position: absolute;
+  left: 0;
+  height: 100%;
+  background-color: #0089f2;
 }
 </style>
