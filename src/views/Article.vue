@@ -5,7 +5,7 @@
         <catalog v-if="isContentLoaded" container=".article-content"></catalog>
       </el-aside>
       <el-main>
-        <div class="article-content">
+        <div v-highlight class="article-content">
           <!-- preview-class 为主题的样式类名，例如vuepress就是vuepress-markdown-body -->
           <v-md-preview-html :html="content"
                              preview-class="vuepress-markdown-body">

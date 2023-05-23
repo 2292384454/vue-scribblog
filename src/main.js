@@ -13,9 +13,10 @@ import '@kangc/v-md-editor/lib/style/preview-html.css';
 
 // 引入使用主题的样式
 import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
+import Highlight from "./plugins/highlight.js";
 
 import '@/mock'
 
 library.add(fas)
 
-createApp(App).use(router).use(ElementPlus, {locale: zhCn}).use(VMdPreviewHtml).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
+createApp(App).use(router).use(ElementPlus, {locale: zhCn}).use(VMdPreviewHtml).use(Highlight).component('font-awesome-icon', FontAwesomeIcon).mount('#app')

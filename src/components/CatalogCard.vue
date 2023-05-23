@@ -127,6 +127,19 @@ export default {
 
     // 监听滚动事件并更新样式
     window.addEventListener("scroll", function () {
+      //调整catalog-card位置
+      const stickyElement = document.getElementById('catalog-card');
+      const stickyElementTop = stickyElement.offsetTop;
+      const minTopDistance = 10;
+      const scrollTop2 = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop2 >= stickyElementTop - minTopDistance) {
+        stickyElement.style.position = 'fixed';
+        stickyElement.style.top = `${minTopDistance}px`;
+      } else {
+        stickyElement.style.position = 'static';
+      }
+
       var scrollTop = document.documentElement.scrollTop || document.body.scrollTop; // 已经读过被卷起来的文档部分
       var scrollHeight = document.documentElement.scrollHeight // 文档总高度
       var clientHeight = document.documentElement.clientHeight // 窗口可视高度
@@ -171,17 +184,6 @@ export default {
 
           return;
         }
-      }
-      const stickyElement = document.getElementById('catalog-card');
-      const stickyElementTop = stickyElement.offsetTop;
-      const minTopDistance = 10;
-      const scrollTop2 = window.pageYOffset || document.documentElement.scrollTop;
-
-      if (scrollTop2 >= stickyElementTop - minTopDistance) {
-        stickyElement.style.position = 'fixed';
-        stickyElement.style.top = `${minTopDistance}px`;
-      } else {
-        stickyElement.style.position = 'static';
       }
     });
 
