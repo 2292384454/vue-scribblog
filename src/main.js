@@ -15,8 +15,10 @@ import '@kangc/v-md-editor/lib/style/preview-html.css';
 import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
 import Highlight from "./plugins/highlight.js";
 
+
 import '@/mock'
 
 library.add(fas)
+
 
 createApp(App).use(router).use(ElementPlus, {locale: zhCn}).use(VMdPreviewHtml).use(Highlight).component('font-awesome-icon', FontAwesomeIcon).mount('#app')

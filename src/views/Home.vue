@@ -1,15 +1,13 @@
 <template>
-  <div class="no-border">
-    <el-carousel :interval="5000" ref="carousel" class="carousel" :height="carouselHeight" trigger="click"
-                 arrow="never">
-      <el-carousel-item>
-        <img src="/img/carousel-hk-sea.jpg" alt="">
-      </el-carousel-item>
-      <el-carousel-item>
-        <img src="/img/carousel-whu.jpg" alt="">
-      </el-carousel-item>
-    </el-carousel>
-  </div>
+  <el-carousel :interval="5000" ref="carousel" class="carousel" :height="carouselHeight" trigger="click"
+               arrow="never">
+    <el-carousel-item>
+      <img src="/img/carousel-hk-sea.jpg" alt="">
+    </el-carousel-item>
+    <el-carousel-item>
+      <img src="/img/carousel-whu.jpg" alt="">
+    </el-carousel-item>
+  </el-carousel>
   <div>
     <article-list/>
   </div>
@@ -53,9 +51,10 @@ export default {
 </script>
 
 <style>
-.carousel{
-  width:100%
+.carousel {
+  width: 100%
 }
+
 .el-carousel__item img {
   width: 100%;
   height: 100%;
