@@ -62,10 +62,10 @@ function buildLineNumber(element) {
         if (!$(code).hasClass('hljsln')) {
             $(code).addClass('hljsln');
             $(code).html(addLineNumbersFor($(code).html()));
-            var $lastNum = $('span[data-num]:last');
+            /*var $lastNum = $('span[data-num]:last');
             if (!$lastNum.html()) {
                 $lastNum.remove();
-            }
+            }*/
         }
     });
 }
