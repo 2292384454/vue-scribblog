@@ -1,7 +1,8 @@
 import "./index.less";
 import 'highlight.js/styles/atom-one-dark.css'
 import $ from "jquery"
-import hljs from 'highlight.js/lib/core';
+import hljs from "highlight.js";
+/*
 import javascript from 'highlight.js/lib/languages/javascript';
 import vbscript from 'highlight.js/lib/languages/vbscript';
 import python from 'highlight.js/lib/languages/python';
@@ -15,8 +16,10 @@ import xml from 'highlight.js/lib/languages/xml';
 import sql from 'highlight.js/lib/languages/sql';
 import cpp from 'highlight.js/lib/languages/cpp';
 import c from 'highlight.js/lib/languages/c';
+*/
 import ClipboardJS from 'clipboard'
 
+/*
 
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('vbscript', vbscript);
@@ -34,6 +37,7 @@ hljs.registerLanguage('cpp', cpp);
 hljs.registerLanguage('c', c);
 
 hljs.configure({ ignoreUnescapedHTML: true });
+*/
 
 
 /**
@@ -43,7 +47,7 @@ hljs.configure({ ignoreUnescapedHTML: true });
 function highlightCode(element) {
     const codeEls = element.querySelectorAll('pre code');
     codeEls.forEach((el) => {
-        hljs.highlightElement(el);
+        hljs.highlightBlock(el);
     });
 }
 
