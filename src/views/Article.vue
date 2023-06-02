@@ -11,6 +11,9 @@
                              preview-class="vuepress-markdown-body">
           </v-md-preview-html>
         </div>
+        <!--分割线-->
+        <el-divider border-style="double"/>
+        <MessageBoard></MessageBoard>
       </el-main>
     </el-container>
   </div>
@@ -21,10 +24,11 @@ import Catalog from "@/components/CatalogCard";
 import {articleApi} from "@/api";
 import buildCodeBlock from "@/utils";
 import {nextTick, ref} from "vue";
+import MessageBoard from "@/components/MessageBoard.vue";
 
 export default {
   name: "Article",
-  components: {Catalog},
+  components: {MessageBoard, Catalog},
 
   setup() {
     let content = ref("")

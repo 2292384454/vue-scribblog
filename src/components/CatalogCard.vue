@@ -219,6 +219,7 @@ export default {
   margin-top: 10px;
   box-sizing: border-box;
   width: 400px;
+  position: static;
   top: 10px;
   z-index: 1000; /* 根据需要调整 z-index 值 */
 }
