@@ -130,7 +130,7 @@ export default {
       //调整catalog-card位置
       const stickyElement = document.getElementById('catalog-card');
       const stickyElementTop = stickyElement.offsetTop;
-      const minTopDistance = 10;
+      const minTopDistance = 15;
       const scrollTop2 = window.pageYOffset || document.documentElement.scrollTop;
 
       if (scrollTop2 >= stickyElementTop - minTopDistance) {
@@ -285,7 +285,7 @@ export default {
 }
 
 .read_pro {
-  position: fixed;
+  position: static;
   left: 30px;
   width: 370px;
   height: 3px;
@@ -295,8 +295,7 @@ export default {
 .read_pro_inner {
   content: '';
   position: absolute;
-  left: 0;
-  height: 100%;
+  height: 3px;
   background-color: #0089f2;
 }
 </style>
