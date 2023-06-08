@@ -1,6 +1,7 @@
 <template>
   <div class="carousel-wrapper">
     <div class="carousel-title">kevin Hwang's Blog</div>
+    <img class="carousel-line" src="/img/line.png">
     <div class="label-box">
       <a class="btn">标签1</a>
       <a class="btn">CTSDB</a>
@@ -132,6 +133,7 @@ export default {
   text-decoration: none;
   margin: 4px 6px;
 }
+
 /* 悬停样式 */
 .btn:hover {
   background: #5284b5;
@@ -141,5 +143,14 @@ export default {
   background-image: -o-linear-gradient(top, #5284b5, #4e8b7d);
   background-image: linear-gradient(to bottom, #5284b5, #4e8b7d);
   text-decoration: none;
+}
+.carousel-line{
+  position: absolute;
+  top: 20ch;
+  right: 100px;
+  z-index: 1;
+  width: 700px;
+  height: 10px;
+  transform: rotate(-4deg);
 }
 </style>
