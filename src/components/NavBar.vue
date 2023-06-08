@@ -8,14 +8,14 @@
              @select="handleSelect">
       <div class="avatar-wrapper">
         <a href="/">
-          <el-avatar :size="40" src="https://empty" align-items="center" @error="errorHandler">
+          <el-avatar :size="40" align-items="center" @error="errorHandler">
             <img
                 src="/img/avatar.jpg"
                 alt="头像"/>
           </el-avatar>
         </a>
       </div>
-      <el-menu-item index="/" :class="{ 'is-active': route.path === '/' || route.path === '/home'}">首页
+      <el-menu-item index="/home" :class="{ 'is-active': route.path === '/' || route.path === '/home' }">首页
       </el-menu-item>
       <el-menu-item index="/demo" :class="{ 'is-active': route.path === '/demo' }">demo
       </el-menu-item>
@@ -73,5 +73,10 @@ export default defineComponent(
   align-items: center;
   margin-right: 30px;
   margin-left: 30px;
+}
+
+.el-menu-item.is-active {
+  background-color: #f0f0f0 ;
+  color: #333;
 }
 </style>

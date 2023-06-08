@@ -1,6 +1,6 @@
 <template>
-  <div
-      style="background-color: #24344c;background-image:url('/img/404background.png') ;background-size: cover; height: 93.8vh">
+  <div class="page-background"
+      style="background-color: #24344c;background-image:url('/img/404background.png') ;background-size: cover; height: calc(100vh - 60px)">
     <div class="space_wrapper">
       <h1>404</h1>
       <h3>LOST IN <span>SPACE</span> ? Hmm, looks like that page doesn't exist.</h3>
