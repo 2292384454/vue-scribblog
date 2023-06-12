@@ -75,8 +75,12 @@ export default defineComponent(
   margin-left: 30px;
 }
 
-.el-menu-item.is-active {
-  background-color: #f0f0f0 ;
-  color: #333;
+.el-menu-demo .el-menu-item:hover, .el-menu-demo .el-submenu__title:hover {
+  background-color: transparent !important;
 }
+
+.el-menu-demo .el-menu-item.is-active, .el-menu-demo .el-submenu.is-active > .el-submenu__title {
+  background-color: transparent !important;
+}
+
 </style>
